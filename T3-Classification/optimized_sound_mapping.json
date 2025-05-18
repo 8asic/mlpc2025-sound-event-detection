@@ -1,0 +1,195 @@
+{
+  "Airplane": [
+    "aircraft",
+    "jet",
+    "plane"
+  ],
+  "Alarm": [
+    "siren"
+  ],
+  "Beep/Bleep": [],
+  "Bell": [
+    "chime",
+    "ding"
+  ],
+  "Bicycle": [
+    "bike",
+    "pedal"
+  ],
+  "Bird Chirp": [
+    "bird call",
+    "birdsong",
+    "forest",
+    "singing bird",
+    "tweet"
+  ],
+  "Bus": [
+    "city bus",
+    "public transport"
+  ],
+  "Car": [
+    "auto",
+    "vehicle"
+  ],
+  "Cat Meow": [
+    "cat sound"
+  ],
+  "Chainsaw": [],
+  "Clapping": [
+    "applause",
+    "clap"
+  ],
+  "Cough": [
+    "throat clear"
+  ],
+  "Cow Moo": [
+    "cow sound",
+    "farm"
+  ],
+  "Cowbell": [],
+  "Crying": [
+    "baby",
+    "sob",
+    "wail"
+  ],
+  "Dog Bark": [
+    "dog sound"
+  ],
+  "Doorbell": [],
+  "Drip": [
+    "droplet",
+    "leak",
+    "sink",
+    "water"
+  ],
+  "Drums": [
+    "bongo"
+  ],
+  "Fire": [
+    "burning",
+    "crackle"
+  ],
+  "Footsteps": [
+    "stairs",
+    "steps",
+    "walking"
+  ],
+  "Guitar": [
+    "strumming"
+  ],
+  "Hammer": [],
+  "Helicopter": [],
+  "Hiccup": [],
+  "Horn Honk": [
+    "traffic"
+  ],
+  "Horse Neigh": [],
+  "Insect Buzz": [
+    "bug",
+    "fly",
+    "insect sound"
+  ],
+  "Jackhammer": [
+    "pneumatic drill"
+  ],
+  "Laughter": [
+    "chuckle",
+    "giggle",
+    "laugh"
+  ],
+  "Lawn Mower": [
+    "grass cutter",
+    "grass trimmer",
+    "mower engine",
+    "mowing machine",
+    "outdoor power equipment",
+    "yard machine"
+  ],
+  "Motorcycle": [
+    "bike",
+    "engine",
+    "motorbike"
+  ],
+  "Piano": [
+    "keyboard"
+  ],
+  "Pig Oink": [],
+  "Power Drill": [
+    "tool"
+  ],
+  "Power Saw": [
+    "cutting",
+    "tool",
+    "wood"
+  ],
+  "Rain": [
+    "raindrop",
+    "storm",
+    "weather"
+  ],
+  "Rooster Crow": [],
+  "Saxophone": [],
+  "Sewing Machine": [],
+  "Sheep/Goat Bleat": [],
+  "Ship/Boat": [],
+  "Shout": [
+    "scream",
+    "voice",
+    "yell"
+  ],
+  "Singing": [
+    "melody",
+    "sing",
+    "song"
+  ],
+  "Siren": [],
+  "Sneeze": [],
+  "Snoring": [
+    "snore"
+  ],
+  "Speech": [
+    "conversation",
+    "dialogue",
+    "speaking",
+    "talking",
+    "voice"
+  ],
+  "Stream/River": [],
+  "Thunder": [
+    "rumble"
+  ],
+  "Train": [
+    "locomotive"
+  ],
+  "Truck": [
+    "lorry"
+  ],
+  "Trumpet": [
+    "band",
+    "brass",
+    "horn",
+    "orchestra"
+  ],
+  "Vacuum Cleaner": [
+    "hoover"
+  ],
+  "Violin": [
+    "fiddle",
+    "music",
+    "orchestra",
+    "solo",
+    "string instrument"
+  ],
+  "Washing Machine": [
+    "spin"
+  ],
+  "Waves": [
+    "beach",
+    "ocean wave",
+    "sea"
+  ],
+  "Wind": [
+    "breeze",
+    "gust"
+  ]
+}
