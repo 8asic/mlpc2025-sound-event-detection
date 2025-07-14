@@ -3,12 +3,19 @@
 <!-- markdownlint-disable html -->
 <!-- markdownlint-disable no-duplicate-header -->
 
-<div align="center">
+<div align="center" style="width: 100%;">
+
 **🥇 Best Model Performance (Lowest Cost Score) out of 77 Teams**<br>
 
-[![Ranking Proof](./assets/results/UE_MLPC_2025_Challenge_Results.png)](./tasks/Task4_Challenge/UE_MLPC_2025_Challenge_Results.pdf#page=18){: width="600" height="400"} *Official ranking by course lecturers, jump to page 18 for our team's results*
+<a href="./tasks/Task4_Challenge/UE_MLPC_2025_Challenge_Results.pdf#page=18" target="_blank" style="display: inline-block; width: 80%;">
+  <img src="./assets/results/UE_MLPC_2025_Challenge_Results.png" 
+       alt="Ranking Proof" 
+       style="width: 100%;">
+</a>
+
+*Official ranking by course lecturers, jump to page 18 for our team's results*
+
 </div>
-<br><br>
 
 > **[Univ.-Prof. Dr. Gerhard Widmer](https://www.jku.at/en/institute-of-computational-perception/about-us/people/gerhard-widmer/):** *"How much time did you spend on this project? ..."*  
 > **Team Member:** *"More than we should..."*  
