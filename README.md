@@ -1,8 +1,13 @@
 # 🏆 Team Fumbling: Sound Event Detection (SED) System  
+<!-- markdownlint-disable first-line-h1 -->
+<!-- markdownlint-disable html -->
+<!-- markdownlint-disable no-duplicate-header -->
 
+<div align="center">
 **🥇 Best Model Performance (Lowest Cost Score) out of 77 Teams**<br>
 
 [![Ranking Proof](./assets/results/UE_MLPC_2025_Challenge_Results.png)](./tasks/Task4_Challenge/UE_MLPC_2025_Challenge_Results.pdf#page=18){: width="600" height="400"} *Official ranking by course lecturers, jump to page 18 for our team's results*
+</div>
 <br><br>
 
 > **[Univ.-Prof. Dr. Gerhard Widmer](https://www.jku.at/en/institute-of-computational-perception/about-us/people/gerhard-widmer/):** *"How much time did you spend on this project? ..."*  
@@ -30,8 +35,7 @@ Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events
 ## 🛠️ Setup
 ```bash
 # 1. Clone repository
-git clone https://github.com/Team-Fumbling/repo.git  
-git clone https://github.com/Team-Fumbling/mlpc2025-sed.git
+git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
 cd mlpc2025-sed
 
 # 2. Install dependencies (Python 3.9+ required)
