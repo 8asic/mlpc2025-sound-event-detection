@@ -1,9 +1,10 @@
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable html -->
 <!-- markdownlint-disable no-duplicate-header -->
-# 🏆 Team Fumbling: Sound Event Detection (SED) System  
 
 <div align="center" style="width: 100%;">
+
+# 🏆 Team Fumbling: Sound Event Detection (SED) System  
 
 **🥇 Best Model Performance (Lowest Cost Score) out of 77 Teams**<br>
 
