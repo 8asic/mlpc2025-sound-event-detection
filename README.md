@@ -1,7 +1,7 @@
-# 🏆 Team Fumbling: Sound Event Detection (SED) System  
 <!-- markdownlint-disable first-line-h1 -->
 <!-- markdownlint-disable html -->
 <!-- markdownlint-disable no-duplicate-header -->
+# 🏆 Team Fumbling: Sound Event Detection (SED) System  
 
 <div align="center" style="width: 100%;">
 
@@ -24,7 +24,7 @@
 > **Team Member:** *"Exactly."*
 
 ## 📌 Overview  
-Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events using free-text annotations. Achieved **41.814 cost score** (best in class) through:  
+Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events using free-text annotations. Achieved **`41.813723` cost score** (best in class) through:  
 - Cost-aware model optimization  
 - Hybrid audio-text feature engineering  
 - Ensemble of SVM, DNN, and Random Forest models  
