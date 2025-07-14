@@ -7,10 +7,10 @@
 
 **🥇 Best Model Performance (Lowest Cost Score) out of 77 Teams**<br>
 
-<a href="./tasks/Task4_Challenge/UE_MLPC_2025_Challenge_Results.pdf#page=18" target="_blank" style="display: inline-block; width: 80%;">
+<a href="./assets/results/UE_MLPC_2025_Challenge_Results.pdf#page=18" target="_blank">
   <img src="./assets/results/UE_MLPC_2025_Challenge_Results.png" 
        alt="Ranking Proof" 
-       style="width: 100%;">
+       style="width: 80%;">
 </a>
 
 *Official ranking by course lecturers, jump to page 18 for our team's results*
