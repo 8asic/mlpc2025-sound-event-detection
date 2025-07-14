@@ -2,7 +2,7 @@
 <!-- markdownlint-disable html -->
 <!-- markdownlint-disable no-duplicate-header -->
 
-<div align="center" style="width: 100%;">
+<div align="center">
 
 # 🏆 Team Fumbling: Sound Event Detection (SED) System  
 
@@ -133,6 +133,8 @@ python scripts/setup_data.py --tasks 2 3 4
 └── requirements.txt                # Python dependencies
 ```
 
+<div align="center">
+
 ## 👥 Team Fumbling
 
 | Member | Socials |
@@ -141,3 +143,4 @@ python scripts/setup_data.py --tasks 2 3 4
 | **Abdulkarim Al Jamal**   | [🔗 Github](https://github.com/karimalj),        [🔗 LinkedIn](https://www.linkedin.com/in/abdulkarim-al-jamal-755746227/) |
 | **Beibarys Abissatov**    | [🔗 Github](https://github.com/PikovyiKOT),      [🔗 LinkedIn](https://www.linkedin.com/in/beibarys-abissatov-217a9236b/) |
 | **Jeronim Bašić**         | [🔗 Github](https://github.com/8asic) |
+</div>
