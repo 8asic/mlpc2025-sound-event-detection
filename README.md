@@ -30,38 +30,6 @@ Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events
 - Hybrid audio-text feature engineering  
 - Ensemble of SVM, DNN, and Random Forest models  
 
-
-## 🏗️ Project Phases  
-| Stage | Description | Resources |
-|-|-|-|
-| **Task 0** | Form Teams       | |
-| **Task 1** | Data Annotation  | [Task PDF](./tasks/Task1_Annotation/MLPC2025S_Annotation_Task.pdf),           [Slides](./tasks/Task1_Annotation/UE_MLPC_2025_Introduction_and_Data_Annotation_Task.pdf) |
-| **Task 2** | Data Exploration | [Task PDF](./tasks/Task2_Exploration/MLPC2025S_Data_Exploration_Task.pdf),    [Slides](./tasks/Task2_Exploration/UE_MLPC_2025_Data_Exploration_Task.pdf) |
-| **Task 3** | Classification   | [Task PDF](./tasks/Task3_Classification/MLPC2025S_Classification_Task.pdf),   [Slides](./tasks/Task3_Classification/UE_MLPC_2025_Classification_and_Challenge_Task.pdf) |
-| **Task 4** | Challenge        | [Task PDF](./tasks/Task4_Challenge/MLPC2025S_Challenge_Task.pdf),             [Slides](./tasks/Task4_Challenge/UE_MLPC_2025_Classification_and_Challenge_Tasks.pdf) |
-
-## 🛠️ Setup
-```bash
-# 1. Clone repository
-git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
-cd mlpc2025-sound-event-detection
-
-# 2. Install dependencies (Python 3.9+ required)
-pip install -r requirements.txt
-
-# 3. Download datasets (6.8GB + 6.1GB + 2GB)
-python scripts/setup_data.py --tasks 2 3 4
-```
-
-## 👥 Team Fumbling
-
-| Member | Socials |
-|-|-|
-| **Abdalaziz Ayoub**       | [🔗 Github](https://github.com/abdalazizayoub),  [🔗 LinkedIn](https://www.linkedin.com/in/abdalaziz-ayoub-61b190352/) |
-| **Abdulkarim Al Jamal**   | [🔗 Github](https://github.com/karimalj),        [🔗 LinkedIn](https://www.linkedin.com/in/abdulkarim-al-jamal-755746227/) |
-| **Beibarys Abissatov**    | [🔗 Github](https://github.com/PikovyiKOT),      [🔗 LinkedIn](https://www.linkedin.com/in/beibarys-abissatov-217a9236b/) |
-| **Jeronim Bašić**         | [🔗 Github](https://github.com/8asic) |
-
 ## 🎯 Results  
 ### Competition Performance (77 Teams)
 | Metric                | Our Score     | All Teams Mean    | All Teams Median  | Improvement |
@@ -83,6 +51,28 @@ python scripts/setup_data.py --tasks 2 3 4
  'Power Drill': -100% (0.00 cost),
  'Siren': -98% (0.24 cost)} 
 ```
+
+## 🛠️ Setup
+```bash
+# 1. Clone repository
+git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
+cd mlpc2025-sound-event-detection
+
+# 2. Install dependencies (Python 3.9+ required)
+pip install -r requirements.txt
+
+# 3. Download datasets (6.8GB + 6.1GB + 2GB)
+python scripts/setup_data.py --tasks 2 3 4
+```
+
+## 🏗️ Project Phases  
+| Stage | Description | Resources |
+|-|-|-|
+| **Task 0** | Form Teams       | |
+| **Task 1** | Data Annotation  | [Task PDF](./tasks/Task1_Annotation/MLPC2025S_Annotation_Task.pdf),           [Slides](./tasks/Task1_Annotation/UE_MLPC_2025_Introduction_and_Data_Annotation_Task.pdf) |
+| **Task 2** | Data Exploration | [Task PDF](./tasks/Task2_Exploration/MLPC2025S_Data_Exploration_Task.pdf),    [Slides](./tasks/Task2_Exploration/UE_MLPC_2025_Data_Exploration_Task.pdf) |
+| **Task 3** | Classification   | [Task PDF](./tasks/Task3_Classification/MLPC2025S_Classification_Task.pdf),   [Slides](./tasks/Task3_Classification/UE_MLPC_2025_Classification_and_Challenge_Task.pdf) |
+| **Task 4** | Challenge        | [Task PDF](./tasks/Task4_Challenge/MLPC2025S_Challenge_Task.pdf),             [Slides](./tasks/Task4_Challenge/UE_MLPC_2025_Classification_and_Challenge_Tasks.pdf) |
 
 ## 📂 Repository Structure
 
@@ -141,3 +131,13 @@ python scripts/setup_data.py --tasks 2 3 4
 ├── pyproject.toml                  # Python project metadata
 ├── README.md                       # This file
 └── requirements.txt                # Python dependencies
+```
+
+## 👥 Team Fumbling
+
+| Member | Socials |
+|-|-|
+| **Abdalaziz Ayoub**       | [🔗 Github](https://github.com/abdalazizayoub),  [🔗 LinkedIn](https://www.linkedin.com/in/abdalaziz-ayoub-61b190352/) |
+| **Abdulkarim Al Jamal**   | [🔗 Github](https://github.com/karimalj),        [🔗 LinkedIn](https://www.linkedin.com/in/abdulkarim-al-jamal-755746227/) |
+| **Beibarys Abissatov**    | [🔗 Github](https://github.com/PikovyiKOT),      [🔗 LinkedIn](https://www.linkedin.com/in/beibarys-abissatov-217a9236b/) |
+| **Jeronim Bašić**         | [🔗 Github](https://github.com/8asic) |
