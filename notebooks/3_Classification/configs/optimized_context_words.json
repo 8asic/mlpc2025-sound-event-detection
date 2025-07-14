@@ -1,0 +1,36 @@
+{
+  "Beep/Bleep": [],
+  "Bird Chirp": [],
+  "Bus": [
+    "highway",
+    "urban"
+  ],
+  "Cow Moo": [],
+  "Crying": [],
+  "Drip": [],
+  "Footsteps": [],
+  "Horn Honk": [],
+  "Insect Buzz": [],
+  "Lawn Mower": [],
+  "Motorcycle": [],
+  "Pig Oink": [
+    "farm"
+  ],
+  "Power Drill": [],
+  "Power Saw": [],
+  "Rain": [],
+  "Sheep/Goat Bleat": [],
+  "Shout": [],
+  "Stream/River": [],
+  "Washing Machine": [],
+  "Waves": [],
+  "Truck": [
+    "diesel",
+    "engine",
+    "highway",
+    "road",
+    "transport"
+  ],
+  "Trumpet": [],
+  "Violin": []
+}
