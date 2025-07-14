@@ -44,7 +44,7 @@ Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events
 ```bash
 # 1. Clone repository
 git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
-cd mlpc2025-sed
+cd mlpc2025-sound-event-detection
 
 # 2. Install dependencies (Python 3.9+ required)
 pip install -r requirements.txt
