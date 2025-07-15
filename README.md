@@ -21,7 +21,7 @@
 > **[Univ.-Prof. Dr. Gerhard Widmer](https://www.jku.at/en/institute-of-computational-perception/about-us/people/gerhard-widmer/):** *"How much time did you spend on this project? ..."*  
 > **Team Member:** *"More than we should..."*  
 > **Team Member:** *"Maybe a better answer would be we were like too invested into it. So, yes, I mean we got into a loop; as [Professor (Paul) Primus](https://www.jku.at/en/institute-of-computational-perception/about-us/people/paul-primus/) said, we came up with 11 hypotheses. 'This doesn’t work', 'OK', we came with another one and so on..."*  
-> **Prof. Widmer:** *"You just loved it!"*  
+> **[Univ.-Prof. Dr. Gerhard Widmer](https://www.jku.at/en/institute-of-computational-perception/about-us/people/gerhard-widmer/):** *"You just loved it!"*  
 > **Team Member:** *"Exactly."*
 
 ## 📌 Overview  
@@ -59,7 +59,11 @@ git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
 cd mlpc2025-sound-event-detection
 
 # 2. Install dependencies (Python 3.9+ required)
-pip install -r requirements.txt
+# For NVIDIA GPU users:
+pip install -r requirements-gpu.txt
+
+# For CPU-only systems:
+# pip install -r requirements-cpu.txt
 
 # 3. Download datasets (6.8GB + 6.1GB + 2GB)
 python scripts/setup_data.py --tasks 2 3 4
@@ -144,3 +148,46 @@ python scripts/setup_data.py --tasks 2 3 4
 | **Beibarys Abissatov**    | [🔗 Github](https://github.com/PikovyiKOT),      [🔗 LinkedIn](https://www.linkedin.com/in/beibarys-abissatov-217a9236b/) |
 | **Jeronim Bašić**         | [🔗 Github](https://github.com/8asic) |
 </div>
+
+
+1. Key Methods & Techniques Identified
+Core Analysis Functions:
+Annotation comparison (temporal/textual)
+
+Embedding similarity analysis (cosine/dot product)
+
+Audio feature extraction (MFCC, melspectrogram)
+
+Dimensionality reduction (PCA, t-SNE, UMAP)
+
+Clustering (K-means)
+
+Quality assessment metrics (variance, correlation)
+
+1. Key Methods & Techniques Identified
+Core Sound Event Detection Approaches:
+Transformer-based SED: ATST (Audio Spectrogram Transformer) architecture
+
+Cost-sensitive learning: Custom loss weighting based on FN/FP costs
+
+Multi-task learning: Simultaneous detection of 10 sound classes
+
+Temporal aggregation: Frame-level to segment-level prediction conversion
+
+Advanced Techniques:
+SpecAugment: Time and frequency masking for audio data augmentation
+
+Learnable positional encodings: For transformer architectures
+
+Dynamic thresholding: Per-class prediction thresholds
+
+Flash attention: Optimized transformer attention computation
+
+Gradient accumulation: For effective larger batch sizes
+
+Evaluation Strategies:
+Custom cost function: Weighted by customer priorities
+
+Segment-level metrics: 1.2-second segment evaluation
+
+Frame-level metrics: 120ms frame evaluation
