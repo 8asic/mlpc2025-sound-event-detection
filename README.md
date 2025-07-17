@@ -26,16 +26,16 @@
 
 ## 📌 Overview  
 Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events using free-text annotations. Achieved **`41.813723` cost score** (best in class) through:  
-- Cost-aware model optimization  
+<!-- - Cost-aware model optimization  
 - Hybrid audio-text feature engineering  
-- Ensemble of SVM, DNN, and Random Forest models  
+- Ensemble of SVM, DNN, and Random Forest models   -->
 
 ## 🎯 Results  
 ### Competition Performance (77 Teams)
 | Metric                | Our Score     | All Teams Mean    | All Teams Median  | Improvement |
 |-|-|-|-|-|
 | **Final Cost**        | `41.813723`   | `135.289336`      | `75.693127 ` | ↓ **69.1%** |
-| **False Negatives**   | 12            | 38                | 26                | ↓ **68.4%** |
+<!-- | **False Negatives**   | 12            | 38                | 26                | ↓ **68.4%** |
 | **Inference Speed**   | 0.8s/file     | 2.1s/file         | 1.7s/file         | ↑ **62.5%** |
 
 **Key Achievements**  
@@ -50,7 +50,7 @@ Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events
 {'Jackhammer': -100% (0.00 cost), 
  'Power Drill': -100% (0.00 cost),
  'Siren': -98% (0.24 cost)} 
-```
+``` -->
 
 ## 🛠️ Setup
 ```bash
@@ -150,7 +150,7 @@ python scripts/setup_data.py --tasks 2 3 4
 </div>
 
 
-1. Key Methods & Techniques Identified
+<!-- 1. Key Methods & Techniques Identified
 Core Analysis Functions:
 Annotation comparison (temporal/textual)
 
@@ -190,4 +190,4 @@ Custom cost function: Weighted by customer priorities
 
 Segment-level metrics: 1.2-second segment evaluation
 
-Frame-level metrics: 120ms frame evaluation
+Frame-level metrics: 120ms frame evaluation -->
