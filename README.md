@@ -54,11 +54,6 @@ Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events
 
 ## 🛠️ Setup
 ```bash
-# 1. Clone repository
-## Installation
-```
-### 1. Clone and Setup
-```bash
 # Clone repository (include --recursive if using submodules)
 git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
 cd mlpc2025-sound-event-detection
