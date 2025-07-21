@@ -53,6 +53,7 @@ Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events
 ``` -->
 
 ## 🛠️ Setup
+### 1. Installation
 ```bash
 # Clone repository (include --recursive if using submodules)
 git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
@@ -67,7 +68,7 @@ python -m pip install -e .  # Core package
 mlpc-install  # Detects GPU/CPU and installs optimal dependencies
 ```
 
-### Alternative manual installation:
+#### Alternative manual installation:
 ```bash
 # For NVIDIA GPU (CUDA 11.8):
 pip install -r requirements-gpu.txt
