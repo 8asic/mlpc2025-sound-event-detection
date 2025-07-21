@@ -55,18 +55,45 @@ Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events
 ## 🛠️ Setup
 ```bash
 # 1. Clone repository
+## Installation
+```
+### 1. Clone and Setup
+```bash
+# Clone repository (include --recursive if using submodules)
 git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
 cd mlpc2025-sound-event-detection
 
-# 2. Install dependencies (Python 3.9+ required)
-# For NVIDIA GPU users:
+# Create and activate conda environment (recommended)
+conda create -n mlpc python=3.9
+conda activate mlpc
+
+# Install with automatic hardware detection
+python -m pip install -e .  # Core package
+mlpc-install  # Detects GPU/CPU and installs optimal dependencies
+```
+
+### Alternative manual installation:
+```bash
+# For NVIDIA GPU (CUDA 11.8):
 pip install -r requirements-gpu.txt
 
 # For CPU-only systems:
-# pip install -r requirements-cpu.txt
+pip install -r requirements-cpu.txt
 
-# 3. Download datasets (6.8GB + 6.1GB + 2GB)
+# Apple Silicon (M1/M2):
+pip install -r requirements-cpu.txt  # Installs ARM-compatible PyTorch
+```
+
+### 2. Data Setup
+
+```bash
+# 3. Download all datasets (6.8GB + 6.1GB + 2GB)
 python scripts/setup_data.py --tasks 2 3 4
+
+# Or download specific tasks:
+python scripts/setup_data.py --tasks 2  # Task 2 only (6.8GB)
+python scripts/setup_data.py --tasks 3  # Task 3 only (6.1GB) 
+python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 ```
 
 ## 🏗️ Project Phases  
