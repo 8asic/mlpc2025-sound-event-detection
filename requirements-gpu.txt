@@ -1,3 +1,5 @@
+#./requirements-gpu.txt
+
 # Core
 numpy==1.23.5
 pandas==2.0.3

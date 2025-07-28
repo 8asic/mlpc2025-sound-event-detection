@@ -1,0 +1,22 @@
+# Data
+data/raw/
+data/processed/
+data/huggingface/
+
+# Environment
+venv/
+.env
+.python-version
+
+# Build/install
+build/
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store

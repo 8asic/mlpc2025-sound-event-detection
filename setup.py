@@ -1,3 +1,5 @@
+#./setup.py
+
 from setuptools import setup, find_packages
 
 # Base dependencies (common to all installations)
