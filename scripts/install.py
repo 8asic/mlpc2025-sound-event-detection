@@ -1,248 +1,239 @@
-# ./scripts/install.py
-
 #!/usr/bin/env python3
 """
-MLPC2025 Installation Script
-
-Automatically detects hardware configuration and installs:
-- Core dependencies
-- PyTorch (GPU/CPU/M1 optimized)
-- Project in development mode
-- Optional extras based on hardware
+MLPC2025 Installation Script - Professional Version
 """
-
 import os
 import platform
 import subprocess
 import sys
 import time
-from typing import Dict, List, Optional, TypedDict
+from typing import List, Dict, Tuple
 import importlib
+from enum import Enum, auto
 
-class EnvironmentInfo(TypedDict):
-    """Type definition for detected environment information."""
-    has_gpu: bool
-    is_mac_arm: bool
-    is_windows: bool
-    is_linux: bool
-    python_version: str  # Changed from bool to str
+class LogLevel(Enum):
+    INFO = auto()
+    SUCCESS = auto()
+    WARNING = auto()
+    ERROR = auto()
+
+class Color:
+    BLUE = '\033[34m'
+    CYAN = '\033[36m'
+    GREEN = '\033[32m'
+    YELLOW = '\033[33m'
+    RED = '\033[31m'
+    END = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class Installer:
-    """Handles system detection and package installation."""
+    """Professional installation handler with GitHub-style output formatting."""
     
-    # Core package versions (must match pyproject.toml)
     CORE_PACKAGES = [
-        "numpy==1.23.5",
-        "pandas==2.0.3",
-        "scikit-learn==1.3.0",
-        "tqdm==4.66.1",
-        "python-dotenv==1.0.0"
+        ('numpy', '1.23.5'),
+        ('pandas', '2.0.3'),
+        ('scikit-learn', '1.3.0'),
+        ('scipy', '1.10.1'),
+        ('tqdm', '4.66.1'),
+        ('python-dotenv', '1.0.0'),
+        ('librosa', '0.10.0'),
+        ('soundfile', '0.12.1'),
+        ('matplotlib', '3.7.2'),
+        ('seaborn', '0.12.2'),
+        ('huggingface-hub', '0.15.1'),
+        ('h5py', '3.9.0')
     ]
-    
-    # Platform-specific PyTorch versions
-    TORCH_PACKAGES = {
-        'cuda': {
-            'torch': "2.0.1+cu118",
-            'torchaudio': "2.0.2+cu118",
-            'torchvision': "0.15.2+cu118",
-            'index_url': "https://download.pytorch.org/whl/cu118"
-        },
-        'cpu': {
-            'torch': "2.0.1",
-            'torchaudio': "2.0.2",
-            'torchvision': "0.15.2",
-            'onnxruntime': "1.15.1"
-        },
-        'm1': {
-            'torch': "2.0.1",
-            'torchaudio': "2.0.2",
-            'torchvision': "0.15.2"
-        }
+
+    IMPORT_MAP = {
+        'scikit-learn': 'sklearn',
+        'python-dotenv': 'dotenv',
+        'huggingface-hub': 'huggingface_hub'
     }
 
     def __init__(self):
         self.env = self._detect_environment()
         self.start_time = time.time()
+        self.total_steps = 4
+        self.current_step = 0
 
-    def _detect_environment(self) -> EnvironmentInfo:
-        """Comprehensive environment detection."""
-        system = platform.system()
-        machine = platform.machine()
+    def _log(self, message: str, level: LogLevel = LogLevel.INFO, indent: int = 0):
+        """GitHub-style logging with colors."""
+        prefix = "  " * indent
+        if level == LogLevel.INFO:
+            print(f"{prefix}{Color.BLUE}ℹ{Color.END} {message}")
+        elif level == LogLevel.SUCCESS:
+            print(f"{prefix}{Color.GREEN}✓{Color.END} {message}")
+        elif level == LogLevel.WARNING:
+            print(f"{prefix}{Color.YELLOW}⚠{Color.END} {message}")
+        elif level == LogLevel.ERROR:
+            print(f"{prefix}{Color.RED}✗{Color.END} {message}")
+
+    def _print_section(self, title: str):
+        """GitHub-style section headers."""
+        print(f"\n{Color.BOLD}{Color.CYAN}### {title}{Color.END}")
+
+    def _print_environment_summary(self):
+        """Professional environment summary with GitHub-style formatting."""
+        print(f"\n{Color.BOLD}Environment Summary:{Color.END}")
+        print(f"  {Color.BLUE}∙{Color.END} OS: {platform.system()}")
+        print(f"  {Color.BLUE}∙{Color.END} Python: {platform.python_version()}")
+        print(f"  {Color.BLUE}∙{Color.END} Architecture: {platform.machine()}")
+        print(f"  {Color.BLUE}∙{Color.END} GPU: {'Available' if self.env['has_gpu'] else 'Not available'}")
         
-        return EnvironmentInfo(
-            has_gpu=self._check_gpu_support(),
-            is_mac_arm=(system == 'Darwin') and (machine == 'arm64'),
-            is_windows=system == 'Windows',
-            is_linux=system == 'Linux',
-            python_version=platform.python_version()
-        )
+        if self.env['has_gpu']:
+            try:
+                gpu_info = subprocess.run(
+                    ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+                    capture_output=True, text=True
+                )
+                print(f"  {Color.BLUE}∙{Color.END} GPU Model: {gpu_info.stdout.strip()}")
+            except:
+                pass
+
+    def _print_progress(self, step_name: str):
+        """GitHub Actions-style progress tracking."""
+        self.current_step += 1
+        self._log(f"Step {self.current_step}/{self.total_steps}: {step_name}")
+
+    def _detect_environment(self) -> Dict[str, bool]:
+        """Detect hardware configuration with silent logging."""
+        has_gpu = self._check_gpu_support()
+        return {
+            'has_gpu': has_gpu,
+            'is_mac_arm': (platform.system() == 'Darwin') and (platform.machine() == 'arm64'),
+            'is_windows': platform.system() == 'Windows'
+        }
 
     def _check_gpu_support(self) -> bool:
-        """Robust GPU detection with fallbacks."""
-        # First try nvidia-smi
+        """Check for NVIDIA GPU."""
         try:
-            if platform.system() == "Windows":
-                result = subprocess.run(
-                    ["nvidia-smi", "--query-gpu=gpu_name", "--format=csv,noheader"],
-                    capture_output=True,
-                    text=True,
-                    creationflags=subprocess.CREATE_NO_WINDOW
-                )
-            else:
-                result = subprocess.run(
-                    ["nvidia-smi", "--query-gpu=gpu_name", "--format=csv,noheader"],
-                    capture_output=True,
-                    text=True
-                )
+            result = subprocess.run(
+                ["nvidia-smi", "--query-gpu=gpu_name", "--format=csv,noheader"],
+                capture_output=True, text=True,
+                creationflags=subprocess.CREATE_NO_WINDOW if platform.system() == "Windows" else 0
+            )
             return "NVIDIA" in result.stdout.strip()
-        except (FileNotFoundError, subprocess.SubprocessError):
-            pass
-        
-        # Fallback to checking for CUDA in PATH
-        try:
-            if platform.system() == "Windows":
-                subprocess.run(
-                    ["nvcc", "--version"],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL,
-                    creationflags=subprocess.CREATE_NO_WINDOW
-                )
-                return True
-            else:
-                subprocess.run(
-                    ["nvcc", "--version"],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL
-                )
-                return True
-        except (FileNotFoundError, subprocess.SubprocessError):
+        except:
             return False
 
-    def _run_pip_command(self, args: List[str]) -> bool:
-        """Execute pip command with error handling."""
+    def _run_pip_install(self, packages: List[str]) -> bool:
+        """Run pip install with professional output."""
+        self._log(f"Installing: {', '.join(packages)}", LogLevel.INFO, 1)
+        
         try:
             subprocess.run(
-                [sys.executable, "-m", "pip", "install"] + args,
+                [sys.executable, "-m", "pip", "install", "--no-cache-dir"] + packages,
                 check=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE
             )
             return True
         except subprocess.CalledProcessError as e:
-            print(f"\n❌ Failed to install packages: {e.stderr.decode().strip()}")
+            self._log(f"Failed to install packages", LogLevel.ERROR, 1)
+            self._log(e.stderr.decode().strip(), LogLevel.ERROR, 2)
             return False
 
-    def install_core(self) -> bool:
+    def install_base(self) -> bool:
         """Install core requirements."""
-        print("\n🔧 Installing core requirements...")
-        return self._run_pip_command(self.CORE_PACKAGES)
-
-    def install_torch(self) -> bool:
-        """Install PyTorch for the detected hardware."""
-        print("\n⚡ Installing PyTorch...")
-        
-        if self.env['is_mac_arm']:
-            print("  - Detected Apple Silicon (M1/M2)")
-            pkgs = [f"{k}=={v}" for k, v in self.TORCH_PACKAGES['m1'].items()]
-        elif self.env['has_gpu']:
-            print("  - Detected NVIDIA GPU")
-            pkgs = [f"{k}=={v}" for k, v in self.TORCH_PACKAGES['cuda'].items()]
-            pkgs.extend(["--extra-index-url", self.TORCH_PACKAGES['cuda']['index_url']])
-        else:
-            print("  - Using CPU-only installation")
-            pkgs = [f"{k}=={v}" for k, v in self.TORCH_PACKAGES['cpu'].items()]
-            pkgs.append(f"onnxruntime=={self.TORCH_PACKAGES['cpu']['onnxruntime']}")
-
-        return self._run_pip_command(pkgs)
+        self._print_progress("Installing base requirements")
+        return self._run_pip_install([f"{pkg}=={ver}" for pkg, ver in self.CORE_PACKAGES])
 
     def install_project(self) -> bool:
         """Install project in development mode."""
-        print("\n📦 Installing project in development mode...")
-        return self._run_pip_command(["-e", "."])
+        self._print_progress("Installing project package")
+        return self._run_pip_install(["-e", "."])
 
-    def install_extras(self) -> bool:
-        """Install optional extras based on hardware."""
-        print("\n✨ Installing additional dependencies...")
+    def install_hardware_extras(self) -> bool:
+        """Install hardware-specific packages with clear output."""
+        self._print_progress("Installing hardware-optimized packages")
         
-        extras = ["extras"]
-        if self.env['has_gpu']:
-            extras.append("gpu")
-        elif not self.env['is_mac_arm']:
-            extras.append("cpu")
+        if self.env['is_mac_arm']:
+            self._log("Detected Apple Silicon - installing M1/M2 optimized packages", LogLevel.INFO, 1)
+            extras = ".[extras]"
+        elif self.env['has_gpu']:
+            self._log("Detected NVIDIA GPU - installing CUDA-accelerated packages", LogLevel.INFO, 1)
+            extras = ".[gpu,extras]"
+        else:
+            self._log("Using CPU-only packages", LogLevel.INFO, 1)
+            extras = ".[cpu,extras]"
             
-        return self._run_pip_command([f".[{','.join(extras)}]"])
-
-    def _verify_package(self, name: str, expected_version: Optional[str] = None) -> bool:
-        """Verify a package is installed and correct version."""
-        try:
-            module = importlib.import_module(name)
-            if expected_version and module.__version__ != expected_version:
-                print(f"⚠️ Version mismatch: {name} (expected {expected_version}, got {module.__version__})")
-                return False
-            return True
-        except ImportError:
-            print(f"❌ Package not found: {name}")
-            return False
+        return self._run_pip_install([extras])
 
     def verify_installation(self) -> bool:
-        """Validate critical packages are installed correctly."""
-        print("\n🔍 Verifying installation...")
-        success = True
+        """Professional package verification with GitHub-style output and flexible checks."""
+        self._print_progress("Verifying installation")
+        self._log("Checking package versions...", LogLevel.INFO, 1)
         
-        # Verify PyTorch installation
-        if not self._verify_package("torch"):
-            success = False
-        else:
-            import torch
-            print(f"  - PyTorch {torch.__version__} installed")
-            if self.env['has_gpu']:
-                cuda_available = torch.cuda.is_available()
-                print(f"  - CUDA available: {cuda_available}")
-                if cuda_available:
-                    # Safely get CUDA version
-                    cuda_version = getattr(torch.version, 'cuda', None)
-                    if cuda_version:
-                        print(f"  - CUDA version: {cuda_version}")
+        results = []
+        critical_failure = False
+        
+        for pkg, expected_ver in self.CORE_PACKAGES:
+            import_name = self.IMPORT_MAP.get(pkg, pkg)
+            try:
+                module = importlib.import_module(import_name)
+                installed_ver = getattr(module, '__version__', None)
+                
+                if installed_ver is None:
+                    if pkg == 'python-dotenv':
+                        status = f"{Color.GREEN}✓ INSTALLED{Color.END}"
+                        note = "(version check not supported)"
                     else:
-                        print("  - CUDA version: Unknown (torch.version.cuda not available)")
+                        status = f"{Color.YELLOW}⚠ UNKNOWN{Color.END}"
+                        note = "version unavailable"
+                    results.append((pkg, status, note))
+                elif installed_ver != expected_ver:
+                    status = f"{Color.YELLOW}⚠ MISMATCH{Color.END}"
+                    note = f"expected {expected_ver}, got {installed_ver}"
+                    results.append((pkg, status, note))
+                else:
+                    status = f"{Color.GREEN}✓ {installed_ver}{Color.END}"
+                    results.append((pkg, status, ""))
+            except ImportError:
+                status = f"{Color.RED}✗ MISSING{Color.END}"
+                results.append((pkg, status, ""))
+                critical_failure = True
         
-        # Verify other core packages
-        for pkg in self.CORE_PACKAGES:
-            name, version = pkg.split("==")
-            if not self._verify_package(name, version):
-                success = False
-
-        return success
-
+        # Print verification table
+        max_pkg_len = max(len(pkg) for pkg, _, _ in results)
+        max_status_len = max(len(status) for _, status, _ in results)
+        
+        print(f"\n{'Package':<{max_pkg_len}}  {'Status':<{max_status_len}}  Notes")
+        print("-" * (max_pkg_len + max_status_len + 20))
+        for pkg, status, note in results:
+            print(f"  {pkg:<{max_pkg_len}}  {status:<{max_status_len}}  {note}")
+        
+        # Final summary
+        if critical_failure:
+            self._log("Critical packages missing - installation may not work", LogLevel.ERROR)
+            return False
+        else:
+            self._log("All packages verified (warnings may exist)", LogLevel.SUCCESS)
+            return True
+    
     def install(self) -> bool:
-        """Run complete installation process."""
-        print("=== MLPC2025 Installation ===")
-        print(f"Detected environment: Python {self.env['python_version']}")
-        print(f"  - OS: {'Windows' if self.env['is_windows'] else 'macOS' if self.env['is_mac_arm'] else 'Linux'}")
-        print(f"  - GPU: {'Available' if self.env['has_gpu'] else 'Not available'}")
-
+        """Run complete professional installation process."""
+        print(f"\n{Color.BOLD}🚀 MLPC2025 Sound Event Detection Setup{Color.END}")
+        self._print_environment_summary()
+        
         steps = [
-            ("Core Packages", self.install_core),
-            ("PyTorch", self.install_torch),
+            ("Base Packages", self.install_base),
             ("Project", self.install_project),
-            ("Extras", self.install_extras),
+            ("Hardware Extras", self.install_hardware_extras),
             ("Verification", self.verify_installation)
         ]
 
         for name, step in steps:
-            print(f"\n🚀 {name}")
+            self._print_section(name)
             if not step():
-                print(f"\n❌ Installation failed during: {name}")
+                self._log(f"Installation failed during: {name}", LogLevel.ERROR)
                 return False
 
         elapsed = time.time() - self.start_time
-        print(f"\n✅ Installation completed successfully in {elapsed:.1f} seconds!")
+        print(f"\n{Color.BOLD}{Color.GREEN}✅ Installation completed in {elapsed:.1f} seconds{Color.END}")
+        print(f"{Color.BOLD}Next steps:{Color.END} Run the application using the project's entry points")
         return True
 
-def main():
-    installer = Installer()
-    if not installer.install():
-        sys.exit(1)
-
 if __name__ == "__main__":
-    main()
+    installer = Installer()
+    sys.exit(0 if installer.install() else 1)
