@@ -53,19 +53,27 @@ Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events
 ``` -->
 
 ## 🛠️ Setup
+
+### System Requirements
+- **OS**: Windows/Linux/macOS (x86_64/AMD64 or ARM for Apple Silicon)
+- **Python**: 3.9.x
+- **GPU** (optional): NVIDIA CUDA 11.8+ for GPU acceleration
+
 ### 1. Installation
 ```bash
-# Clone repository (include --recursive if using submodules)
+# Clone repository
 git clone https://github.com/8asic/mlpc2025-sound-event-detection.git
 cd mlpc2025-sound-event-detection
 
-# Create and activate conda environment (recommended)
-conda create -n mlpc python=3.9
+# Create and activate conda environment
+conda create -n mlpc python=3.9 -y
 conda activate mlpc
 
-# Install with automatic hardware detection
-python -m pip install -e .  # Core package
-mlpc-install  # Detects GPU/CPU and installs optimal dependencies
+# Install core package in editable mode
+pip install -e .
+
+# Run automated installation script (detects hardware and installs optimal packages)
+python -m scripts.install
 ```
 
 #### Alternative manual installation:
