@@ -74,18 +74,10 @@ pip install -e .
 
 # Run automated installation script (detects hardware and installs optimal packages)
 python -m scripts.install
-```
 
-#### Alternative manual installation:
-```bash
-# For NVIDIA GPU (CUDA 11.8):
-pip install -r requirements-gpu.txt
-
-# For CPU-only systems:
-pip install -r requirements-cpu.txt
-
-# Apple Silicon (M1/M2):
-pip install -r requirements-cpu.txt  # Installs ARM-compatible PyTorch
+# Or manually specify extras
+pip install -e .[cpu,extras]  # CPU-only
+pip install -e .[gpu,extras]  # GPU support
 ```
 
 ### 2. Data Setup
@@ -152,7 +144,8 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 │   ├── data/                       # Data loading/preprocessing
 │   ├── evaluation/                 # Custom metrics/cost calculations
 │   ├── features/                   # Feature engineering (audio/text)
-│   └── models/                     # MODEL CODE (training/prediction logic)
+│   ├── models/                     # MODEL CODE (training/prediction logic)
+│   └── utils/
 │
 ├── tasks/                          # Original task materials
 │   ├── Task1_Data_Annotation/      # PDFs/slides from Task 1  
@@ -165,7 +158,9 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 ├── .gitignore                      # Specifies untracked files (e.g., raw data)
 ├── pyproject.toml                  # Python project metadata
 ├── README.md                       # This file
-└── requirements.txt                # Python dependencies
+├── requirements-cpu.txt            # Python dependencies
+├── requirements-gpu.txt
+└── setup.py
 ```
 
 <div align="center">

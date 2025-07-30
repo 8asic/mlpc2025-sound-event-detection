@@ -16,43 +16,49 @@ def read_file(filename):
     with open(filename, 'r', encoding='utf-8') as f:
         return f.read()
 
-# Base dependencies (MUST include all essential packages)
-base_requirements = [
-    # Core Scientific Stack
+# Shared base requirements (sync with Installer.CORE_PACKAGES in install.py)
+BASE_REQUIRES = [
     'numpy==1.23.5',
     'pandas==2.0.3',
     'scikit-learn==1.3.0',
     'scipy==1.10.1',
     'tqdm==4.66.1',
-    
-    # Environment/Config
     'python-dotenv==1.0.0',
-    
-    # Audio Processing
     'librosa==0.10.0',
     'soundfile==0.12.1',
-    
-    # Visualization
     'matplotlib==3.7.2',
     'seaborn==0.12.2',
-    
-    # Data Management
-    'huggingface-hub==0.15.1',  # Changed from 0.16.0
+    'huggingface-hub==0.15.1',
     'h5py==3.9.0'
 ]
 
 # Platform-specific extras
-extras_require = {
+EXTRAS_REQUIRE = {
     'cpu': [
-        'torch==2.0.1',
-        'torchaudio==2.0.2',
-        'torchvision==0.15.2',
+        # PyTorch CPU with index URL (Windows/Linux x86)
+        'torch==2.0.1; platform_system!="Darwin" and platform_machine!="arm64" '
+        '--index-url https://download.pytorch.org/whl/cpu',
+        'torchaudio==2.0.2; platform_system!="Darwin" and platform_machine!="arm64" '
+        '--index-url https://download.pytorch.org/whl/cpu',
+        'torchvision==0.15.2; platform_system!="Darwin" and platform_machine!="arm64" '
+        '--index-url https://download.pytorch.org/whl/cpu',
+        
+        # Mac Silicon (M1/M2) - no index URL needed
+        'torch==2.0.1; platform_system=="Darwin" and platform_machine=="arm64"',
+        'torchaudio==2.0.2; platform_system=="Darwin" and platform_machine=="arm64"',
+        'torchvision==0.15.2; platform_system=="Darwin" and platform_machine=="arm64"',
+        
         'onnxruntime==1.15.1'
     ],
     'gpu': [
-        'torch==2.0.1+cu118',
-        'torchaudio==2.0.2+cu118',
-        'torchvision==0.15.2+cu118',
+        # PyTorch CUDA with index URL
+        'torch==2.0.1+cu118; platform_system!="Darwin" '
+        '--index-url https://download.pytorch.org/whl/cu118',
+        'torchaudio==2.0.2+cu118; platform_system!="Darwin" '
+        '--index-url https://download.pytorch.org/whl/cu118',
+        'torchvision==0.15.2+cu118; platform_system!="Darwin" '
+        '--index-url https://download.pytorch.org/whl/cu118',
+        
         'flash-attn==2.0.0; platform_system!="Windows"'
     ],
     'extras': [
@@ -64,15 +70,29 @@ extras_require = {
 
 # Windows-specific adjustments
 if sys.platform == 'win32':
-    extras_require['cpu'].append('torch==2.0.1+cpu')
-    extras_require['gpu'].append('torch==2.0.1+cu118')
+    EXTRAS_REQUIRE['cpu'].extend([
+        'torch==2.0.1+cpu; platform_system=="Windows" '
+        '--index-url https://download.pytorch.org/whl/cpu',
+        'torchaudio==2.0.2+cpu; platform_system=="Windows" '
+        '--index-url https://download.pytorch.org/whl/cpu',
+        'torchvision==0.15.2+cpu; platform_system=="Windows" '
+        '--index-url https://download.pytorch.org/whl/cpu'
+    ])
+    EXTRAS_REQUIRE['gpu'].extend([
+        'torch==2.0.1+cu118; platform_system=="Windows" '
+        '--index-url https://download.pytorch.org/whl/cu118',
+        'torchaudio==2.0.2+cu118; platform_system=="Windows" '
+        '--index-url https://download.pytorch.org/whl/cu118',
+        'torchvision==0.15.2+cu118; platform_system=="Windows" '
+        '--index-url https://download.pytorch.org/whl/cu118'
+    ])
 
 setup(
     name="mlpc_project",
     version="0.1",
     packages=find_packages(include=['src*']),
-    install_requires=base_requirements,
-    extras_require=extras_require,
+    install_requires=BASE_REQUIRES,
+    extras_require=EXTRAS_REQUIRE,
     python_requires='>=3.9,<3.10',
     package_data={
         'src': ['*.json', '*.yaml', '*.md'],

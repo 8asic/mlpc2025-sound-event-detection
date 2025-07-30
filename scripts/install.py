@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 MLPC2025 Installation Script - Professional Version
+Integrated with setup.py dependencies
 """
 import os
 import platform
@@ -10,6 +11,7 @@ import time
 from typing import List, Dict, Tuple
 import importlib
 from enum import Enum, auto
+from importlib.metadata import version
 
 class LogLevel(Enum):
     INFO = auto()
@@ -30,32 +32,32 @@ class Color:
 class Installer:
     """Professional installation handler with GitHub-style output formatting."""
     
-    CORE_PACKAGES = [
-        ('numpy', '1.23.5'),
-        ('pandas', '2.0.3'),
-        ('scikit-learn', '1.3.0'),
-        ('scipy', '1.10.1'),
-        ('tqdm', '4.66.1'),
-        ('python-dotenv', '1.0.0'),
-        ('librosa', '0.10.0'),
-        ('soundfile', '0.12.1'),
-        ('matplotlib', '3.7.2'),
-        ('seaborn', '0.12.2'),
-        ('huggingface-hub', '0.15.1'),
-        ('h5py', '3.9.0')
-    ]
-
-    IMPORT_MAP = {
-        'scikit-learn': 'sklearn',
-        'python-dotenv': 'dotenv',
-        'huggingface-hub': 'huggingface_hub'
-    }
-
     def __init__(self):
         self.env = self._detect_environment()
         self.start_time = time.time()
         self.total_steps = 4
         self.current_step = 0
+        
+        # Dynamically load requirements from setup.py
+        try:
+            from setup import BASE_REQUIRES, EXTRAS_REQUIRE
+            self.base_packages = [
+                (pkg.split('==')[0], pkg.split('==')[1] if '==' in pkg else None)
+                for pkg in BASE_REQUIRES
+            ]
+            self.extras_require = EXTRAS_REQUIRE
+        except ImportError:
+            self._log("Failed to load setup.py dependencies", LogLevel.ERROR)
+            sys.exit(1)
+
+        # Core packages that must be verifiable
+        self.verifiable_packages = [
+            ('numpy', '1.23.5'),
+            ('pandas', '2.0.3'),
+            ('scikit-learn', '1.3.0'),
+            ('librosa', '0.10.0'),
+            ('torch', '2.0.1')  # Will be replaced by correct version later
+        ]
 
     def _log(self, message: str, level: LogLevel = LogLevel.INFO, indent: int = 0):
         """GitHub-style logging with colors."""
@@ -137,7 +139,7 @@ class Installer:
     def install_base(self) -> bool:
         """Install core requirements."""
         self._print_progress("Installing base requirements")
-        return self._run_pip_install([f"{pkg}=={ver}" for pkg, ver in self.CORE_PACKAGES])
+        return self._run_pip_install([pkg for pkg, _ in self.base_packages])
 
     def install_project(self) -> bool:
         """Install project in development mode."""
@@ -149,10 +151,10 @@ class Installer:
         self._print_progress("Installing hardware-optimized packages")
         
         if self.env['is_mac_arm']:
-            self._log("Detected Apple Silicon - installing M1/M2 optimized packages", LogLevel.INFO, 1)
+            self._log("Detected Apple Silicon - installing extras", LogLevel.INFO, 1)
             extras = ".[extras]"
         elif self.env['has_gpu']:
-            self._log("Detected NVIDIA GPU - installing CUDA-accelerated packages", LogLevel.INFO, 1)
+            self._log("Detected NVIDIA GPU - installing GPU extras", LogLevel.INFO, 1)
             extras = ".[gpu,extras]"
         else:
             self._log("Using CPU-only packages", LogLevel.INFO, 1)
@@ -161,28 +163,17 @@ class Installer:
         return self._run_pip_install([extras])
 
     def verify_installation(self) -> bool:
-        """Professional package verification with GitHub-style output and flexible checks."""
+        """Professional package verification with GitHub-style output."""
         self._print_progress("Verifying installation")
-        self._log("Checking package versions...", LogLevel.INFO, 1)
+        self._log("Checking critical package versions...", LogLevel.INFO, 1)
         
         results = []
         critical_failure = False
         
-        for pkg, expected_ver in self.CORE_PACKAGES:
-            import_name = self.IMPORT_MAP.get(pkg, pkg)
+        for pkg, expected_ver in self.verifiable_packages:
             try:
-                module = importlib.import_module(import_name)
-                installed_ver = getattr(module, '__version__', None)
-                
-                if installed_ver is None:
-                    if pkg == 'python-dotenv':
-                        status = f"{Color.GREEN}✓ INSTALLED{Color.END}"
-                        note = "(version check not supported)"
-                    else:
-                        status = f"{Color.YELLOW}⚠ UNKNOWN{Color.END}"
-                        note = "version unavailable"
-                    results.append((pkg, status, note))
-                elif installed_ver != expected_ver:
+                installed_ver = version(pkg)
+                if expected_ver and installed_ver != expected_ver:
                     status = f"{Color.YELLOW}⚠ MISMATCH{Color.END}"
                     note = f"expected {expected_ver}, got {installed_ver}"
                     results.append((pkg, status, note))
@@ -208,7 +199,7 @@ class Installer:
             self._log("Critical packages missing - installation may not work", LogLevel.ERROR)
             return False
         else:
-            self._log("All packages verified (warnings may exist)", LogLevel.SUCCESS)
+            self._log("Core packages verified (warnings may exist)", LogLevel.SUCCESS)
             return True
     
     def install(self) -> bool:
