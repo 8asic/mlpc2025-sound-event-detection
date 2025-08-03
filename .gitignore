@@ -1,7 +1,10 @@
 # Data
 data/raw/
+!data/raw/.gitkeep
 data/processed/
+!data/processed/.gitkeep 
 data/huggingface/
+!data/huggingface/.gitkeep
 
 # Environment
 venv/
