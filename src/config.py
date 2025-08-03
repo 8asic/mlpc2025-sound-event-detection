@@ -40,18 +40,18 @@ class Config:
             "download_url": "https://cloud.cp.jku.at/public.php/dav/files/YKJqiWjnQQAjiH5/?accept=zip",
             "sha256": None,  # TODO: Add actual checksum when available
             "required_files": {
-                "audio/",                      # Required folder (note trailing slash)
-                "audio_features/",                      # Required folder (note trailing slash)
-                "annotations.csv",      # Required file
-                "annotations_text_embeddings.npz",          # Required file
-                "metadata.csv",          # Required file
-                "metadata_keywords_embeddings.npz",          # Required file
-                "metadata_title_embeddings.npz",          # Required file
-                "README.md",          # Required file
+                "audio/",                      
+                "audio_features/",                      
+                "annotations.csv",      
+                "annotations_text_embeddings.npz",          
+                "metadata.csv",          
+                "metadata_keywords_embeddings.npz",          
+                "metadata_title_embeddings.npz",          
+                "README.md",          
             },
-            "required_folders": {             # Alternative approach
-                "audio",                        # Folder name without slash
-                "audio_features",                   # Another required folder
+            "required_folders": {             
+                "audio",                        
+                "audio_features",                   
             }
         },
         DatasetType.CLASSIFICATION: {
@@ -60,16 +60,16 @@ class Config:
             "download_url": "https://cloud.cp.jku.at/public.php/dav/files/DxtxDck5fSjKAgZ/?accept=zip",
             "sha256": None,
             "required_files": {
-                "audio/",                      # Required folder (note trailing slash)
-                "audio_features/",                      # Required folder (note trailing slash)
-                "labels/",                        # Folder name without slash
-                "annotations.csv",      # Required file
-                "metadata.csv",          # Required file
+                "audio/",                      
+                "audio_features/",                      
+                "labels/",                        
+                "annotations.csv",      
+                "metadata.csv",          
             },
-            "required_folders": {             # Alternative approach
-                "audio",                        # Folder name without slash
-                "audio_features",                   # Another required folder
-                "labels",                        # Folder name without slash
+            "required_folders": {             
+                "audio",                        
+                "audio_features",                   
+                "labels",                        
             }
         },
         DatasetType.CHALLENGE: {
@@ -78,14 +78,14 @@ class Config:
             "download_url": "https://cloud.cp.jku.at/public.php/dav/files/ae3aAEE3gPJwo6f/?accept=zip",
             "sha256": None,
             "required_files": {
-                "audio/",                      # Required folder (note trailing slash)
-                "audio_features/",                      # Required folder (note trailing slash)
-                "ground_truth.csv",      # Required file
-                "metadata.csv",          # Required file
+                "audio/",                      
+                "audio_features/",                      
+                "ground_truth.csv",      
+                "metadata.csv",          
             },
-            "required_folders": {             # Alternative approach
-                "audio",                     # Folder name without slash
-                "audio_features",                   # Another required folder
+            "required_folders": {             
+                "audio",                     
+                "audio_features",                   
             }
         }
     }

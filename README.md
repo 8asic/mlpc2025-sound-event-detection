@@ -158,8 +158,6 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 ├── .gitignore                      # Specifies untracked files (e.g., raw data)
 ├── pyproject.toml                  # Python project metadata
 ├── README.md                       # This file
-├── requirements-cpu.txt            # Python dependencies
-├── requirements-gpu.txt
 └── setup.py
 ```
 
