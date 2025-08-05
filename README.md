@@ -25,7 +25,7 @@
 > **Team Member:** *"Exactly."*
 
 ## 📌 Overview  
-A **competition-winning Sound Event Detection (SED) system** developed for JKU Linz's *Machine Learning and Pattern Classification (MLPC SS25)* course, **leveraging free-text annotations to enable reuse of general audio datasets for specialized detection** — eliminating manual relabeling. Key innovations:  
+A **competition-winning Sound Event Detection (SED) system** developed for JKU Linz's *Machine Learning and Pattern Classification (MLPC SS25)* course, **leveraging free-text annotations to enable reuse of general audio datasets for specialized detection** — *eliminating manual relabeling*. Key innovations:  
 <!--
 - **Cost-Driven ML**: Optimized for real-world error tradeoffs (e.g., prioritizing mechanical sounds like jackhammers over ambient noise)  
 - **Multimodal Fusion**: Combines transformer-based acoustic features with text embeddings from human annotations  
