@@ -27,3 +27,7 @@ Thumbs.db
 # Preserve directory structure
 */*/
 !*/*/.gitkeep
+
+# Preserve all empty dirs (advanced)
+**/
+!**/.gitkeep

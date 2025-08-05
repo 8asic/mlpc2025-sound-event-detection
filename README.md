@@ -11,7 +11,7 @@
 <a href="./assets/results/UE_MLPC_2025_Challenge_Results.pdf#page=18" target="_blank">
   <img src="./assets/results/UE_MLPC_2025_Challenge_Results.png" 
        alt="Ranking Proof" 
-       style="width: 80%;">
+       style="width: 85%;">
 </a>
 
 *Official ranking by course lecturers, jump to page 18 for our team's results*
@@ -25,11 +25,12 @@
 > **Team Member:** *"Exactly."*
 
 ## 📌 Overview  
-Developed for *MLPC 2025* at JKU Linz, this system detects temporal sound events using free-text annotations. Achieved **`41.813723` cost score** (best in class) through:  
-<!-- - Cost-aware model optimization  
-- Hybrid audio-text feature engineering  
-- Ensemble of SVM, DNN, and Random Forest models   -->
-
+A **competition-winning Sound Event Detection (SED) system** developed for JKU Linz's *Machine Learning and Pattern Classification (MLPC SS25)* course, **leveraging free-text annotations to enable reuse of general audio datasets for specialized detection** — eliminating manual relabeling. Key innovations:  
+<!--
+- **Cost-Driven ML**: Optimized for real-world error tradeoffs (e.g., prioritizing mechanical sounds like jackhammers over ambient noise)  
+- **Multimodal Fusion**: Combines transformer-based acoustic features with text embeddings from human annotations  
+- **Deployment-Ready**: Achieved **#1 ranking** (`41.813723` cost score) while maintaining #s/file inference speed 
+-->
 ## 🎯 Results  
 ### Competition Performance (77 Teams)
 | Metric                | Our Score     | All Teams Mean    | All Teams Median  | Improvement |
@@ -120,7 +121,8 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 │   └── raw/                        # Original datasets from JKU Cloud (never modify)
 │
 ├── docs/                           # Project documentation
-│   └── meeting_notes/              # Team meeting summaries
+|   ├── meeting_notes/              # Team meeting summaries
+│   └── project_description/              
 │
 ├── models/                         # Serialized model binaries (weights, pickles)
 │   ├── experimental/               # Models under development/testing
@@ -140,12 +142,16 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 │       └── bonus_task/             # Extra challenge experiments
 │
 ├── scripts/                        # Utility scripts
+|   ├── install.py/                 # 
+│   └── setup_data.py/
+│
 ├── src/                            # Reusable Python code (proper package structure)
 │   ├── data/                       # Data loading/preprocessing
 │   ├── evaluation/                 # Custom metrics/cost calculations
 │   ├── features/                   # Feature engineering (audio/text)
 │   ├── models/                     # MODEL CODE (training/prediction logic)
-│   └── utils/
+│   ├── utils/
+│   └── config.py
 │
 ├── tasks/                          # Original task materials
 │   ├── Task1_Data_Annotation/      # PDFs/slides from Task 1  
@@ -155,6 +161,7 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 │
 ├── tutorials/                      # Course tutorial materials
 │
+├── .gitattributes                  # Specifies untracked files (e.g., raw data)
 ├── .gitignore                      # Specifies untracked files (e.g., raw data)
 ├── pyproject.toml                  # Python project metadata
 ├── README.md                       # This file
