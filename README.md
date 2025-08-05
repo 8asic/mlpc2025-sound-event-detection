@@ -33,25 +33,12 @@ A **competition-winning Sound Event Detection (SED) system** developed for JKU L
 -->
 ## 🎯 Results  
 ### Competition Performance (77 Teams)
-| Metric                | Our Score     | All Teams Mean    | All Teams Median  | Improvement |
+| Metric                    | Our Score     | Benchmark             | Improvement   | Business Impact |
 |-|-|-|-|-|
-| **Final Cost**        | `41.813723`   | `135.289336`      | `75.693127 ` | ↓ **69.1%** |
-<!-- | **False Negatives**   | 12            | 38                | 26                | ↓ **68.4%** |
-| **Inference Speed**   | 0.8s/file     | 2.1s/file         | 1.7s/file         | ↑ **62.5%** |
-
-**Key Achievements**  
-✔ **1st Place** - Lowest cost score (41.814)  
-✔ **69% better** than average team performance  
-✔ **45% lower cost** than median team  
-✔ Perfect 0.00 cost on 3/10 mechanical sound classes  
-
-**Performance Breakdown**  
-```python
-# Top 3 Classes by Relative Improvement
-{'Jackhammer': -100% (0.00 cost), 
- 'Power Drill': -100% (0.00 cost),
- 'Siren': -98% (0.24 cost)} 
-``` -->
+| **Weighted Cost Score**   | `41.813723`   | Mean: `135.289336`    | ↓ 69.1%       | Most cost-efficient solution |
+| **False Negatives**       | 12            |  |  |  |
+| **Inference Speed**       |  |  |  |  |
+| **Mechanical Sounds**     |  |  |  |  |
 
 ## 🛠️ Setup
 
@@ -112,29 +99,29 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 │   └── reports/                    # Formal PDF reports for grading
 │
 ├── assets/                         # Static media files
-│   ├── figures/                    # Generated plots/visualizations
+│   ├── figures/                    # Generated plots/visualizations (PNG/JPEG)
 │   └── results/                    # Official competition proofs/screenshots
 │
 ├── data/                           # All dataset files (git-ignored raw data)
-│   ├── huggingface/                # HF-specific files (e.g., evaluation scripts)
+│   ├── huggingface/                # HuggingFace-specific files (e.g., evaluation scripts)
 │   ├── processed/                  # Cleaned/transformed data (features, embeddings)
 │   └── raw/                        # Original datasets from JKU Cloud (never modify)
 │
 ├── docs/                           # Project documentation
-|   ├── meeting_notes/              # Team meeting summaries
-│   └── project_description/              
+│   ├── meeting_notes/              # Team meeting summaries (Markdown format)
+│   └── project_description/        # Original project briefings/requirements  
 │
 ├── models/                         # Serialized model binaries (weights, pickles)
 │   ├── experimental/               # Models under development/testing
-│   └── production/                 # Final models used in challenges
+│   └── production/                 # Final models used in challenges (ONNX/PyTorch)
 │
 ├── notebooks/                      # Jupyter notebooks by project phase
 │   ├── 1_Data_Annotation/          # Task 1: Annotation analysis
 │   ├── 2_Data_Exploration/         # Task 2: EDA and clustering
-│   │   └── archive/                # Archived exploration notebooks
+│   │   └── archive/                # Archived exploration notebooks (WIP versions)
 │   ├── 3_Classification/           # Task 3: Model training
 │   │   ├── archive/                # Archived classification notebooks
-│   │   ├── configs/                # Configuration files
+│   │   ├── configs/                # Hyperparameter configurations (YAML/JSON)
 │   │   ├── model_analysis/         # Model evaluation notebooks
 │   │   └── model_training/         # Training pipelines
 │   └── 4_Challenge/                # Task 4: Final challenge solutions
@@ -142,16 +129,16 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 │       └── bonus_task/             # Extra challenge experiments
 │
 ├── scripts/                        # Utility scripts
-|   ├── install.py/                 # 
-│   └── setup_data.py/
+│   ├── install.py                  # Environment setup and dependency installer
+│   └── setup_data.py               # Dataset download/preprocessing handler
 │
 ├── src/                            # Reusable Python code (proper package structure)
-│   ├── data/                       # Data loading/preprocessing
+│   ├── data/                       # Data loading/preprocessing utilities
 │   ├── evaluation/                 # Custom metrics/cost calculations
 │   ├── features/                   # Feature engineering (audio/text)
-│   ├── models/                     # MODEL CODE (training/prediction logic)
-│   ├── utils/
-│   └── config.py
+│   ├── models/                     # Core model architectures (PyTorch)
+│   ├── utils/                      # Helper functions and shared utilities
+│   └── config.py                   # Centralized project configuration
 │
 ├── tasks/                          # Original task materials
 │   ├── Task1_Data_Annotation/      # PDFs/slides from Task 1  
@@ -161,11 +148,11 @@ python scripts/setup_data.py --tasks 4  # Task 4 only (2GB)
 │
 ├── tutorials/                      # Course tutorial materials
 │
-├── .gitattributes                  # Specifies untracked files (e.g., raw data)
+├── .gitattributes                  # Git configuration for line endings/binary files
 ├── .gitignore                      # Specifies untracked files (e.g., raw data)
-├── pyproject.toml                  # Python project metadata
-├── README.md                       # This file
-└── setup.py
+├── pyproject.toml                  # Python project metadata and dependencies
+├── README.md                       # Project overview and documentation
+└── setup.py                        # Package installation configuration
 ```
 
 <div align="center">
