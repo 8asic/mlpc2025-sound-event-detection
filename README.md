@@ -24,28 +24,45 @@
 > **[Univ.-Prof. Dr. Gerhard Widmer](https://www.jku.at/en/institute-of-computational-perception/about-us/people/gerhard-widmer/):** *"You just loved it!"*  
 > **Team Member:** *"Exactly."*
 
-## 📌 Overview  
+## 📌 Overview
+
 A **competition-winning Sound Event Detection (SED) system** developed for JKU Linz's *Machine Learning and Pattern Classification (MLPC SS25)* course, **leveraging free-text annotations to enable reuse of general audio datasets for specialized detection** — *eliminating manual relabeling*. Key innovations:  
+
+<details>
+<summary><strong>🚧 Under Development</strong></summary>
+<i>Key innovations are still being documented</i>
+</details>
+
 <!--
 - **Cost-Driven ML**: Optimized for real-world error tradeoffs (e.g., prioritizing mechanical sounds like jackhammers over ambient noise)  
 - **Multimodal Fusion**: Combines transformer-based acoustic features with text embeddings from human annotations  
 - **Deployment-Ready**: Achieved **#1 ranking** (`41.813723` cost score) while maintaining #s/file inference speed 
 -->
-## 🎯 Results  
-### Competition Performance (77 Teams)
-| Metric                    | Our Score     | Benchmark             | Improvement   | Business Impact |
-|-|-|-|-|-|
-| **Weighted Cost Score**   | `41.813723`   | Mean: `135.289336`    | ↓ 69.1%       | Most cost-efficient solution |
-| **False Negatives**       | 12            |  |  |  |
-| **Inference Speed**       |  |  |  |  |
-| **Mechanical Sounds**     |  |  |  |  |
+## 🎯 Results 
+
+<details>
+<summary><strong>🚧 Under Development</strong></summary>
+<i>This section contains preliminary results and is not yet ready for deployment/reproducibility. Metrics are being actively updated.</i>
+</details>
+
+<div align="center">
+
+### Benchmark Comparison (Our Model vs. Baseline)
+| Metric                    | Our Score | Baseline | Improvement   | 
+|-|-|-|-|
+| **Weighted Cost Score**   |   | `41.813723`   | ↓ #%       |
+| **False Negatives**       |   |  12           |  |  |
+| **Inference Speed**       |   |  |  |  |
+| **Mechanical Sounds**     |   |  |  |  |
+
+</div>
 
 ## 🛠️ Setup
 
-### System Requirements
+<!-- ### System Requirements
 - **OS**: Windows/Linux/macOS (x86_64/AMD64 or ARM for Apple Silicon)
 - **Python**: 3.9.x
-- **GPU** (optional): NVIDIA CUDA 11.8+ for GPU acceleration
+- **GPU** (optional): NVIDIA CUDA 11.8+ for GPU acceleration -->
 
 ### 1. Installation
 ```bash
