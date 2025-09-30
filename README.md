@@ -48,7 +48,7 @@ A **competition-winning Sound Event Detection (SED) system** developed for JKU L
 <div align="center">
 
 ### Benchmark Comparison (Our Model vs. Baseline)
-| Metric                    | Our Score | Baseline | Improvement   | 
+| Metric                    | Baseline | Our Score | Improvement   | 
 |-|-|-|-|
 | **Weighted Cost Score**   |   | `41.813723`   | ↓ #%       |
 | **False Negatives**       |   |  12           |  |  |
